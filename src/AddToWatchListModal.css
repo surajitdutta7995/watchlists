@@ -1,0 +1,56 @@
+.addToWatchListPortal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.addToWatchListModal {
+  width: 50vw;
+  /* height: 50vh; */
+  padding: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* gap: 20px; */
+}
+
+.createWatchList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  input {
+    border: 1px solid var(--borderColor);
+    border-radius: 4px;
+    height: 24px;
+  }
+}
+
+.addToExisting {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create {
+  background-color: var(--themeRed);
+  padding: 5px;
+  border: 1px solid var(--themeRed);
+  border-radius: 4px;
+  color: #fff;
+}
+
+.selectWatchlist {
+  border: 1px solid var(--borderColor);
+  border-radius: 4px;
+}

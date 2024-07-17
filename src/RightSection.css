@@ -1,0 +1,103 @@
+.bookmarkContainer {
+  display: inline-block;
+  height: 15px;
+  width: 10px;
+  background-color: var(--textColor);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 75%, 0 100%);
+}
+
+.addIcon {
+  position: absolute;
+  height: 15px;
+  width: 10px;
+  color: #fff;
+}
+
+.rightSection {
+  display: grid;
+  gap: 20px;
+  text-align: left;
+  overflow-y: auto;
+  scrollbar-width: none;
+  grid-template-rows: 1fr 4fr;
+}
+
+.hero {
+  border: 1px solid var(--themeRed);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.content {
+  display: grid;
+  gap: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.movieSearch {
+  border: 1px solid var(--borderColor);
+  border-radius: 4px;
+  width: 80%;
+  height: 20px;
+}
+
+.search {
+  border: 1px solid;
+  border-radius: 4px;
+  background-color: var(--themeRed);
+  color: #fff;
+  cursor: pointer;
+  height: 24px;
+}
+
+.posters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  scrollbar-width: none;
+}
+
+.poster {
+  box-shadow: 0px 5px 5px var(--cardShadow);
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+  background-color: var(--cardBackgrouund);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  max-height: 500px;
+}
+
+.posterBookmarkContainer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 30px;
+  width: 20px;
+  background-color: var(--textColor);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 75%, 0 100%);
+}
+
+.posterBookmarkPlusIcon {
+  position: absolute;
+  height: 30px;
+  width: 20px;
+  color: #fff;
+  scale: 0.5;
+}
+
+.posterBackground {
+  background-size: cover;
+  overflow: hidden;
+  height: 85%;
+}
+
+.description {
+  padding: 10px;
+}

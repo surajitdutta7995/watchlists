@@ -1,0 +1,77 @@
+.leftSection {
+  display: grid;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  border-right: 1px solid var(--borderColor);
+  box-shadow: 0px 2px 2px var(--borderColor);
+  grid-template-rows: 1fr 4fr;
+}
+
+.listSearch {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid borderColor;
+  box-shadow: 0px 1px 1px boxShadowColor;
+}
+
+.searchWatchList {
+  border: 1px solid var(--borderColor);
+  border-radius: "4px";
+}
+
+.home {
+  background-color: var(--themeRed);
+  width: 100%;
+  border: 1px solid var(--themeRed);
+  border-radius: 4px;
+  color: #fff;
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+}
+
+.myListsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.userSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.logout {
+  background-color: var(--themeRed);
+  width: "100%";
+  border: 1px solid var(--themeRed);
+  border-radius: 4px;
+  color: #fff;
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.watchList {
+  background-color: var(--boxShadowColor);
+  border: 1px solid var(--borderColor);
+  text-align: left;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.userControls {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px;
+  border-radius: 4px;
+  border: 1px solid var(--borderColor);
+  box-shadow: 0px 1px 1px var(--boxShadowColor);
+  align-items: center;
+}

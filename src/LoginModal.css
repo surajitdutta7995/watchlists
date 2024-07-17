@@ -1,0 +1,46 @@
+.loginPortal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.loginModal {
+  width: 50vw;
+  /* height: 50vh; */
+  padding: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  button {
+    background-color: var(--themeRed);
+    color: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--themeRed);
+    cursor: pointer;
+    padding: 5px;
+  }
+}
+
+.inputField {
+  border: 1px solid var(--borderColor);
+  border-radius: "4px";
+  width: "50%";
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 30px;
+}
+

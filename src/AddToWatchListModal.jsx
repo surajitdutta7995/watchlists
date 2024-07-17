@@ -13,7 +13,7 @@ const AddToWatchListModal = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [showTitleErrorText, toggleShowTitleErrorText] = useState(false);
-  const [watchList, selectWatchList] = useState(watchLists ? watchLists[0].title : '');
+  const [watchList, selectWatchList] = useState(watchLists ? watchLists?.[0]?.title : '');
   const options =
     watchLists &&
     watchLists.length > 0 &&

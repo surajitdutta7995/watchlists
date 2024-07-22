@@ -5,19 +5,19 @@ import {
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { themeRed } from "./ThemeConstants";
-import AppContext from "./AppContext";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setIsUserLoggedIn,
+  setLoggedInUser,
+  setSelectedWatchlist,
+} from "./appStateSlice";
 import "./LeftSection.css";
 
 const LeftSection = () => {
-  const {
-    loggedinUser,
-    setLoggedInUser,
-    setIsUserLoggedIn,
-    watchLists,
-    setSelectedWatchlist,
-  } = useContext(AppContext);
+  const { loggedinUser, watchLists } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [showLogoutOption, setShowLogoutOption] = useState(false);
   const [searchParam, setSearchParam] = useState("");
   const [watchListToRender, setWatchListToRender] = useState([...watchLists]);
@@ -43,7 +43,10 @@ const LeftSection = () => {
             setSearchParam(e.target.value);
           }}
         />
-        <button className="home">
+        <button
+          className="home"
+          onClick={() => dispatch(setSelectedWatchlist(null))}
+        >
           <FontAwesomeIcon icon={faHome} style={{ color: "#fff" }} />
           Home
         </button>
@@ -56,7 +59,7 @@ const LeftSection = () => {
               className="watchList"
               key={index}
               onClick={() => {
-                setSelectedWatchlist(list);
+                dispatch(setSelectedWatchlist(list));
               }}
             >
               {list.title}
@@ -68,10 +71,10 @@ const LeftSection = () => {
           <button
             className="logout"
             onClick={() => {
-              setLoggedInUser("");
-              setIsUserLoggedIn(false);
+              dispatch(setLoggedInUser(""));
+              dispatch(setIsUserLoggedIn(false));
+              dispatch(setSelectedWatchlist(null));
               setShowLogoutOption(false);
-              setSelectedWatchlist(null);
             }}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />

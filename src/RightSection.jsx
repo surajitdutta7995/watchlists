@@ -1,14 +1,14 @@
 import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { themeRed } from "./ThemeConstants";
-import AppContext from "./AppContext";
+import { useDispatch } from "react-redux";
+import { setShowAddTowatchListModal, setSelectedMovie } from "./appStateSlice";
 import "./RightSection.css";
 
 const RightSection = () => {
-  const { setShowAddTowatchListModal, setSelectedMovie } =
-    useContext(AppContext);
+  const dispatch = useDispatch();
   const [searchParam, setSearchParam] = useState("");
   const [movies, setMovies] = useState([]);
   const searchForMovies = () => {
@@ -30,8 +30,8 @@ const RightSection = () => {
   );
   const checkMark = <FontAwesomeIcon icon={faCheck} color={"lime"} />;
   const addToWatchList = (movie) => {
-    setSelectedMovie(movie);
-    setShowAddTowatchListModal(true);
+    dispatch(setSelectedMovie(movie));
+    dispatch(setShowAddTowatchListModal(true));
   };
   return (
     <div className="rightSection">

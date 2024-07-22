@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { faCheck, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AppContext from "./AppContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setWatchLists, setSelectedWatchlist } from "./appStateSlice";
 import { themeRed } from "./ThemeConstants";
 
 const WatchList = () => {
-  const { watchLists, setWatchLists, selectedWatchlist, setSelectedWatchlist } =
-    useContext(AppContext);
+  const { watchLists, selectedWatchlist } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const renderCheckMark = (movie) => {
     return (
       <FontAwesomeIcon
@@ -24,7 +25,7 @@ const WatchList = () => {
     const updatedWatchList = selectedWatchlist;
     updatedWatchList.movies[movieIndex].isSeen =
       !updatedWatchList.movies[movieIndex].isSeen;
-    setSelectedWatchlist(updatedWatchList);
+    dispatch(setSelectedWatchlist(updatedWatchList));
     updateWatchLists(updatedWatchList);
   };
   const [isEditEnabled, setIsEditEnabled] = useState(false);
@@ -33,7 +34,7 @@ const WatchList = () => {
     const updatedWatchList = { ...selectedWatchlist };
     updatedWatchList.title = title;
     updateWatchLists(updatedWatchList);
-    setSelectedWatchlist(updatedWatchList);
+    dispatch(setSelectedWatchlist(updatedWatchList));
   };
   const updateWatchLists = (updatedWatchList) => {
     const listIndex = watchLists.findIndex(
@@ -41,7 +42,7 @@ const WatchList = () => {
     );
     const updatedWatchlists = [...watchLists];
     updatedWatchlists[listIndex] = updatedWatchList;
-    setWatchLists(updatedWatchlists);
+    dispatch(setWatchLists(updatedWatchlists));
     localStorage.setItem("watchLists", JSON.stringify(updatedWatchlists));
   };
   return (

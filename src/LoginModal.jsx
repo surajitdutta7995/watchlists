@@ -1,11 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { themeRed } from "./ThemeConstants";
 import "./LoginModal.css";
-import AppContext from "./AppContext";
+import {
+    setIsUserLoggedIn,
+    setLoggedInUser
+} from './appStateSlice'
+import { useSelector, useDispatch } from "react-redux";
 
-const LoginModal = (props) => {
-  const { isUserLoggedIn, setIsUserLoggedIn, setLoggedInUser } =
-    useContext(AppContext);
+const LoginModal = () => {
+  const { isUserLoggedIn } =
+  useSelector((state) => state);
+  const dispatch = useDispatch();
   const [emailId, setEmailId] = useState("");
   const [showUnregisteredEmailText, setShowUnregisteredEmailText] =
     useState(false);
@@ -41,8 +46,8 @@ const LoginModal = (props) => {
               onClick={() => {
                 if (localStorage.getItem(emailId)) {
                   console.log("user authenticated");
-                  setIsUserLoggedIn(true);
-                  setLoggedInUser(localStorage.getItem(emailId));
+                  dispatch(setIsUserLoggedIn(true));
+                  dispatch(setLoggedInUser(localStorage.getItem(emailId)));
                 } else {
                   console.log("user authentication failed");
                   setShowUnregisteredEmailText(true);
@@ -66,8 +71,8 @@ const LoginModal = (props) => {
                 } else {
                   localStorage.setItem(emailId, emailId.split("@")?.[0]);
                   console.log("user registration successful");
-                  setIsUserLoggedIn(true);
-                  setLoggedInUser(emailId);
+                  dispatch(setIsUserLoggedIn(true));
+                  dispatch(setLoggedInUser(emailId));
                 }
               }}
             >

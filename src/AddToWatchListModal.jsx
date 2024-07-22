@@ -1,15 +1,19 @@
-import { useContext, useState } from "react";
-import AppContext from "./AppContext";
+import { useState } from "react";
 import "./AddToWatchListModal.css";
 import { themeRed } from "./ThemeConstants";
+import {
+  setWatchLists,
+  setShowAddTowatchListModal
+} from './appStateSlice'
+import { useSelector, useDispatch } from "react-redux";
 
 const AddToWatchListModal = () => {
   const {
     watchLists,
-    setWatchLists,
-    setShowAddTowatchListModal,
     selectedMovie,
-  } = useContext(AppContext);
+  } =
+  useSelector((state) => state);
+  const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [showTitleErrorText, toggleShowTitleErrorText] = useState(false);
@@ -40,10 +44,10 @@ const AddToWatchListModal = () => {
       });
     }
     localStorage.setItem("watchLists", JSON.stringify(updatedWatchlists));
-    setWatchLists(updatedWatchlists);
+    dispatch(setWatchLists(updatedWatchlists));
     setTitle("");
     setDescription("");
-    setShowAddTowatchListModal(false);
+    dispatch(setShowAddTowatchListModal(false));
   };
   const createWatchList = (
     <div className="createWatchList">

@@ -1,16 +1,16 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import LeftSection from "./LeftSection";
 import RightSection from "./RightSection";
-import AppContext from "./AppContext";
 import WatchList from "./WatchList";
+import { useSelector } from "react-redux";
 
-const Home = (props) => {
+const Home = () => {
   const { selectedWatchlist } =
-  useContext(AppContext);
+    useSelector((state) => state);
   return (
     <>
-      <LeftSection/>
-      {selectedWatchlist ? <WatchList/> : <RightSection/>}
+      <LeftSection />
+      {selectedWatchlist ? <WatchList /> : <RightSection />}
     </>
   );
 };

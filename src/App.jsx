@@ -1,63 +1,42 @@
-import { useState, createContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Home from "./Home";
 import LoginModal from "./LoginModal";
-import { textColor } from "./ThemeConstants";
 import { createPortal } from "react-dom";
-import AppContext from "./AppContext";
 import AddToWatchListModal from "./AddToWatchListModal";
-
-// const AppContext = createContext(null);
+import { useSelector, useDispatch } from "react-redux";
+import { setWatchLists } from "./appStateSlice";
 
 export default function App() {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const [loggedinUser, setLoggedInUser] = useState("");
-  const [watchLists, setWatchLists] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState({});
-  const [selectedWatchlist, setSelectedWatchlist] = useState(null);
-  const [showAddTowatchListModal, setShowAddTowatchListModal] = useState(false);
-  const contextValue = {
-    isUserLoggedIn,
-    setIsUserLoggedIn,
-    loggedinUser,
-    setLoggedInUser,
-    watchLists,
-    setWatchLists,
-    showAddTowatchListModal,
-    setShowAddTowatchListModal,
-    selectedMovie,
-    setSelectedMovie,
-    selectedWatchlist,
-    setSelectedWatchlist,
-  };
+  const { isUserLoggedIn, watchLists, showAddTowatchListModal } = useSelector(
+    (state) => state
+  );
+  const dispatch = useDispatch();
   useEffect(() => {
     if (
       localStorage.getItem("watchLists") &&
       JSON.parse(localStorage.getItem("watchLists"))?.length &&
       isUserLoggedIn
     ) {
-      setWatchLists((prevState) => {
-        return localStorage.getItem("watchLists") !== prevState &&
-          localStorage.getItem("watchLists")
-          ? JSON.parse(localStorage.getItem("watchLists"))
-          : [];
-      });
+      dispatch(
+        setWatchLists(
+          localStorage.getItem("watchLists") !== watchLists &&
+            localStorage.getItem("watchLists")
+            ? JSON.parse(localStorage.getItem("watchLists"))
+            : []
+        )
+      );
     } else {
-      setWatchLists([]);
+      dispatch(setWatchLists([]));
     }
   }, [isUserLoggedIn]);
   return (
-    <AppContext.Provider value={contextValue}>
-      <div className="App">
-        <Home />
-        {!isUserLoggedIn &&
-          createPortal(<LoginModal />, document.querySelector("#root"))}
-        {showAddTowatchListModal &&
-          createPortal(
-            <AddToWatchListModal />,
-            document.querySelector("#root")
-          )}
-      </div>
-    </AppContext.Provider>
+    <div className="App">
+      <Home />
+      {!isUserLoggedIn &&
+        createPortal(<LoginModal />, document.querySelector("#root"))}
+      {showAddTowatchListModal &&
+        createPortal(<AddToWatchListModal />, document.querySelector("#root"))}
+    </div>
   );
 }

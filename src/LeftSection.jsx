@@ -43,7 +43,12 @@ const LeftSection = () => {
             setSearchParam(e.target.value);
           }}
         />
-        <button className="home">
+        <button
+          className="home"
+          onClick={() => {
+            setSelectedWatchlist(null);
+          }}
+        >
           <FontAwesomeIcon icon={faHome} style={{ color: "#fff" }} />
           Home
         </button>
